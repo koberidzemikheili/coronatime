@@ -20,3 +20,21 @@ Route::get('/', function () {
 Route::get('login', function () {
 	return view('session.login');
 });
+Route::get('register', function () {
+	return view('session.register');
+});
+Route::get('password-reset-email', function () {
+	return view('session.password-reset.email');
+});
+Route::get('password-reset-newpassword', function () {
+	return view('session.password-reset.newpassword');
+});
+Route::get('password-reset-successfull', function () {
+	return view('session.password-reset.successfull');
+});
+Route::get('password-reset-confirmation', function () {
+	return view('session.password-reset.confirmation');
+});
+Route::get('password-reset-successfull', function () {
+	return view('session.verified');
+});
