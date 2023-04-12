@@ -54,7 +54,7 @@
             </button>
           </div>
           <div class="text-gray-700 mt-5 text-center">Already have an account?
-            <a class="text-black font-bold" href="/login"> Sign in</a></div>
+            <a class="text-black font-bold" href="{{route('login.view')}}"> Sign in</a></div>
         </form>
     </div>
 </div>
