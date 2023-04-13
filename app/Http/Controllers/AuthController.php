@@ -12,7 +12,7 @@ class AuthController extends Controller
 {
 	public function login(LoginRequest $request): RedirectResponse
 	{
-		if (auth()->attempt($request->validated())) {
+		if (auth()->attempt($request->validated(), $request->has('remember'))) {
 			session()->regenerate();
 
 			return redirect()->route('landing')->with('success', 'Welcome Back!');
