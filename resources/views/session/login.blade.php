@@ -5,7 +5,7 @@
         <x-home-logo class="mb-5 mt-5"></x-home-logo>
         <h2 class="text-2xl font-bold text-left lg:mb-6">Welcome back</h2>
         <div class="mb-4 text-gray-700">Welcome back! Please enter your details</div>
-        <form method="POST" action="#" class="w-full lg:w-1/2">
+        <form method="POST" action="{{route('login')}}" class="w-full lg:w-1/2">
           @csrf
           <div class="mb-4">
             <label for="email" class="block text-gray-700 font-medium mb-2">Username</label>
