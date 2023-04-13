@@ -14,8 +14,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-	return view('welcome');
+	return view('worldwide-content');
 })->name('landing');
+
+Route::get('/bycountry', function () {
+	return view('bycountry-content');
+})->name('bycountry');
 
 Route::get('login', function () {
 	return view('session.login');
@@ -24,18 +28,18 @@ Route::get('register', function () {
 	return view('session.register');
 })->name('register.view');
 
-Route::prefix('password-reset-')->group(function () {
+Route::prefix('password-reset')->group(function () {
 	Route::get('email', function () {
-		return view('session.password-reset.email');
+		return view('password-reset.email');
 	})->name('reset-email.view');
 	Route::get('newpassword', function () {
-		return view('session.password-reset.newpassword');
+		return view('password-reset.newpassword');
 	})->name('reset-newpassword.view');
 	Route::get('successfull', function () {
-		return view('session.password-reset.successfull');
+		return view('password-reset.successfull');
 	})->name('reset-successfull');
 	Route::get('confirmation', function () {
-		return view('session.password-reset.confirmation');
+		return view('password-reset.confirmation');
 	})->name('reset-confirmation');
 	Route::get('verified', function () {
 		return view('session.verified');
