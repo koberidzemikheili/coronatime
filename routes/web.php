@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
 	return view('worldwide-content');
-})->name('landing');
+})->middleware('auth')->name('landing');
 
 Route::get('/bycountry', function () {
 	return view('bycountry-content');
@@ -23,10 +24,10 @@ Route::get('/bycountry', function () {
 
 Route::get('login', function () {
 	return view('session.login');
-})->name('login.view');
+})->name('login.view')->middleware('guest');
 Route::get('register', function () {
 	return view('session.register');
-})->name('register.view');
+})->name('register.view')->middleware('guest');
 
 Route::prefix('password-reset')->group(function () {
 	Route::get('email', function () {
@@ -45,3 +46,7 @@ Route::prefix('password-reset')->group(function () {
 		return view('session.verified');
 	})->name('verified');
 });
+
+Route::post('register', [AuthController::class, 'store'])->middleware('guest')->name('register');
+Route::post('logout', [AuthController::class, 'destroy'])->middleware('auth')->name('logout');
+Route::post('login', [AuthController::class, 'login'])->middleware('guest')->name('login');

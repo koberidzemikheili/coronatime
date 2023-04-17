@@ -5,8 +5,11 @@
         <x-lang-button></x-lang-button>
     </div>
     <div class="hidden sm:flex items-center ml-4">
-        <span class="font-bold">Username</span>
-        <a href="#" class="ml-4 font-bold">Log out</a>
+        <span class="font-bold">{{auth()->user()->username}}</span>
+        <form id="logout-form" method="POST" action="{{ route('logout') }}" class="block px-4 py-2 text-sm ">
+          @csrf
+          <button type="submit" class="text-l font-bold">Log Out</button>
+      </form>   
       </div>
 
     <div x-data="{ isVisible: false }">
@@ -14,10 +17,13 @@
     
       <div x-show="isVisible" 
       class="absolute mt-2 rounded-md  bg-white divide-y">
-         <div class="py-1">
-             <div class="block px-4 py-2 text-sm">Username</div>
-             <a href="#" class="block px-4 py-2 text-sm ">Log Out</a>
-         </div>
+         
+             <div class="block px-4 py-2 text-sm">{{auth()->user()->username}}</div>
+             <form id="logout-form" method="POST" action="{{ route('logout') }}" class="block px-4 py-2 text-sm ">
+              @csrf
+              <button type="submit" class="text-l font-bold">Log Out</button>
+          </form>   
+             
      </div>
     </div>
   </div>
