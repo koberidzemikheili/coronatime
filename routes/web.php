@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\StatisticController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,9 +19,7 @@ Route::get('/', function () {
 	return view('worldwide-content');
 })->middleware('auth')->name('landing');
 
-Route::get('/bycountry', function () {
-	return view('bycountry-content');
-})->name('bycountry');
+Route::get('/bycountry', [StatisticController::class, 'index'])->name('bycountry')->middleware('locale');
 
 Route::get('login', function () {
 	return view('session.login');
