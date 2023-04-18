@@ -15,4 +15,9 @@ class Country extends Model
 	protected $guarded = ['id'];
 
 	public $translatable = ['name'];
+
+	public function statistic()
+	{
+		return $this->hasOne(Statistic::class);
+	}
 }
