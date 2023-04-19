@@ -33,7 +33,7 @@
               class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
               <label for="remember" class="ml-2 block text-gray-700 font-medium">Remember this device</label>
             </div>
-            <a href="{{route('reset-newpassword.view')}}" class="text-blue-600 hover:underline ml-auto">Forgot Password?</a>
+            <a href="{{route('password.request')}}" class="text-blue-600 hover:underline ml-auto">Forgot Password?</a>
           </div>
           <div class="flex items-center justify-between">
             <button type="submit" 

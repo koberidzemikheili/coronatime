@@ -10,6 +10,6 @@ class VerificationController extends Controller
 	{
 		$request->fulfill();
 
-		return redirect(route('verificatione.verified'));
+		return redirect(route('verification.verified'));
 	}
 }
