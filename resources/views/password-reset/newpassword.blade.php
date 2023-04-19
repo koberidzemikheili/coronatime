@@ -2,8 +2,10 @@
     <div class="mx-auto lg:max-w-xl flex items-center flex-col">
 <x-home-logo class="mt-5 mb-5"></x-home-logo>
         <div class="text-2xl font-bold text-left mb-6 mt-32">Reset Password</div>
-        <form method="POST" action="#" class="mx-5">
+        <form method="POST" action="{{route('password.update')}}" class="mx-5">
           @csrf
+          <input type="hidden" name="token" value="{{ $token }}">
+          <input type="hidden" name="email" value="{{ $email }}"/>
           <div class="mb-4">
             <label for="password" class="block text-gray-700 font-medium mb-2">New password</label>
             <input id="password" type="password" name="password" required autocomplete="current-password" placeholder="Fill in password"
