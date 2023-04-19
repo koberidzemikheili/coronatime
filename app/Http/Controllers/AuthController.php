@@ -32,8 +32,8 @@ class AuthController extends Controller
 
 	public function store(RegisterRequest $request): RedirectResponse
 	{
-		User::create($request->validated());
-
-		return redirect('/')->with('success', 'Your account has been created.');
+		$user = User::create($request->validated());
+		$user->sendEmailVerificationNotification();
+		return redirect()->route('verification.notice')->with('success', 'Your account has been created.');
 	}
 }
