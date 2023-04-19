@@ -34,6 +34,6 @@ class AuthController extends Controller
 	{
 		$user = User::create($request->validated());
 		$user->sendEmailVerificationNotification();
-		return redirect(route('verification.notice'))->with('success', 'Your account has been created.');
+		return redirect()->route('verification.notice')->with('success', 'Your account has been created.');
 	}
 }
