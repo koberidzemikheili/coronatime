@@ -51,17 +51,17 @@ class User extends Authenticatable implements MustVerifyEmail
 		'email_verified_at' => 'datetime',
 	];
 
-	public function setPasswordAttribute($password)
+	public function setPasswordAttribute($password): void
 	{
 		$this->attributes['password'] = bcrypt($password);
 	}
 
-	public function sendEmailVerificationNotification()
+	public function sendEmailVerificationNotification(): void
 	{
 		$this->notify(new CustomVerifyEmail());
 	}
 
-	public function sendPasswordResetNotification($token)
+	public function sendPasswordResetNotification($token): void
 	{
 		$this->notify(new CustomResetPasswordNotification($token));
 	}

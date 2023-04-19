@@ -7,12 +7,13 @@ use App\Http\Requests\PasswordRequest\ResetRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Auth\Events\PasswordReset;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Password;
 
 class PasswordController extends Controller
 {
-	public function postResetEmail(EmailRequest $request)
+	public function postResetEmail(EmailRequest $request): RedirectResponse
 	{
 		$request->validate(['email' => 'required|email']);
 
@@ -32,7 +33,7 @@ class PasswordController extends Controller
 		);
 	}
 
-	public function reset(ResetRequest $request)
+	public function reset(ResetRequest $request): RedirectResponse
 	{
 		$status = Password::reset(
 			$request->only('email', 'password', 'password_confirmation', 'token'),

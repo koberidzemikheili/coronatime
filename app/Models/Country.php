@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Spatie\Translatable\HasTranslations;
 
 class Country extends Model
@@ -16,7 +17,7 @@ class Country extends Model
 
 	public $translatable = ['name'];
 
-	public function statistic()
+	public function statistic(): HasOne
 	{
 		return $this->hasOne(Statistic::class);
 	}

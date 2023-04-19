@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Statistic extends Model
 {
@@ -11,7 +12,7 @@ class Statistic extends Model
 
 	protected $guarded = ['id'];
 
-	public function country()
+	public function country(): BelongsTo
 	{
 		return $this->belongsTo(Country::class);
 	}
