@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use App\Models\Country;
+use Illuminate\Support\Facades\Http;
 
 class FetchCountryData extends Command
 {
@@ -26,7 +27,8 @@ class FetchCountryData extends Command
 	 */
 	public function handle()
 	{
-		$data = json_decode(file_get_contents('https://devtest.ge/countries'), true);
+		$response = Http::get('https://devtest.ge/countries');
+		$data = $response->json();
 
 		$bar = $this->output->createProgressBar(count($data));
 
