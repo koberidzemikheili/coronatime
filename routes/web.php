@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\StatisticController;
+use App\Http\Controllers\VerificationController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -41,11 +42,12 @@ Route::prefix('password-reset')->group(function () {
 	Route::get('confirmation', function () {
 		return view('password-reset.confirmation');
 	})->name('reset-confirmation');
-	Route::get('verified', function () {
-		return view('session.verified');
-	})->name('verified');
 });
 
 Route::post('register', [AuthController::class, 'store'])->middleware('guest')->name('register');
 Route::post('logout', [AuthController::class, 'destroy'])->middleware('auth')->name('logout');
 Route::post('login', [AuthController::class, 'login'])->middleware('guest')->name('login');
+
+Route::get('/email/verify', function () { return view('auth.verify-email'); })->middleware('guest')->name('verification.notice');
+Route::get('/email/verified', function () {return view('auth.verified'); })->middleware('guest')->name('verificatione.verified');
+Route::get('/email/verify/{id}/{hash}', [VerificationController::class, 'verifyEmail'])->middleware(['signed'])->name('verification.verify');
