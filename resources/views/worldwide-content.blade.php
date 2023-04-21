@@ -1,6 +1,6 @@
-
 <x-layout>
-    <x-header :title="'Worldwide Statistics'" :worldwideClass="'underline opacity-100'" :bycountryClass="''" ></x-header>
+    <x-header :title="'Worldwide Statistics'" :worldwideClass="''" :bycountryClass="'opacity-50'" 
+    :Bycountryhidden="'hidden'" :worldwidehidden="''" ></x-header>
       <div class="flex flex-wrap justify-center mb-4">
 
         <div class="lg:mx-4 mb-4 lg:mb-0 relative lg:h-60 lg:w-80 h-64 w-96">

@@ -1,5 +1,6 @@
 <x-layout>
-    <x-header :title="'Bycountry Statistics'" :bycountryClass="'opacity-100 underline'" :worldwideClass="''"></x-header>
+    <x-header :title="'Bycountry Statistics'" :bycountryClass="''" :worldwideClass="'opacity-50'" 
+    :Bycountryhidden="''" :worldwidehidden="'hidden'" ></x-header>
     <div class="overflow-x-auto flex flex-col lg:mx-20 max-h-680">
       <form method="get" action="{{ route('bycountry') }}" class="mb-4">
         <div class="relative">
@@ -15,21 +16,29 @@
               <th class="px-4 py-2">
                 <a href="{{ route('bycountry', ['sort' => 'country_name', 'direction' => $direction == 'asc' ? 'desc' : 'asc', 'search' => $search]) }}">
                     Location
+                    <img src="{{ $direction == 'asc' ? '/arrowup.png' : '/arrowdown.png' }}" 
+                    class="inline-block ml-2 {{ $sort != 'country_name' ? 'hidden' : ''}}" />
                 </a>
             </th>
                 <th class="px-4 py-2">
                     <a href="{{ route('bycountry', ['sort' => 'confirmed', 'direction' => $direction == 'asc' ? 'desc' : 'asc']) }}">
                         Confirmed
+                        <img src="{{ $direction == 'asc' ? '/arrowup.png' : '/arrowdown.png' }}" 
+                        class="inline-block ml-2 {{ $sort != 'confirmed' ? 'hidden' : ''}}" />
                     </a>
                 </th>
                 <th class="px-4 py-2">
                     <a href="{{ route('bycountry', ['sort' => 'deaths', 'direction' => $direction == 'asc' ? 'desc' : 'asc']) }}">
                         Deaths
+                        <img src="{{ $direction == 'asc' ? '/arrowup.png' : '/arrowdown.png' }}" 
+                        class="inline-block ml-2 {{ $sort != 'deaths' ? 'hidden' : ''}}" />
                     </a>
                 </th>
                 <th class="px-4 py-2">
                     <a href="{{ route('bycountry', ['sort' => 'recovered', 'direction' => $direction == 'asc' ? 'desc' : 'asc']) }}">
                         Recovered
+                        <img src="{{ $direction == 'asc' ? '/arrowup.png' : '/arrowdown.png' }}" 
+                        class="inline-block ml-2 {{ $sort != 'recovered' ? 'hidden' : ''}}" />
                     </a>
                 </th>
             </tr>

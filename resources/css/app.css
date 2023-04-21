@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.max-h-680 {
+    max-height: 680px;
+  }
+
+  @media (max-height: 900px) {
+    .max-h-680 {
+      max-height: 570px;
+    }
+  }
