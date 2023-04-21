@@ -16,30 +16,35 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
-Route::get('/', [StatisticController::class, 'show'])->middleware(['auth', 'verified'])->name('landing');
-
-Route::get('/bycountry', [StatisticController::class, 'index'])->middleware(['auth', 'verified'])->name('bycountry')->middleware('locale');
-
-Route::get('login', function () {
-	return view('session.login');
-})->name('login.view')->middleware('guest');
-Route::get('register', function () {
-	return view('session.register');
-})->name('register.view')->middleware('guest');
-
-Route::post('register', [AuthController::class, 'store'])->middleware('guest')->name('register');
-Route::post('logout', [AuthController::class, 'destroy'])->middleware('auth')->name('logout');
-Route::post('login', [AuthController::class, 'login'])->middleware('guest')->name('login');
-
-Route::get('/email/verify', function () { return view('auth.verify-email'); })->middleware('guest')->name('verification.notice');
-Route::get('/email/verified', function () {return view('auth.verified'); })->middleware('guest')->name('verification.verified');
-Route::get('/email/verify/{id}/{hash}', [VerificationController::class, 'verifyEmail'])->middleware(['signed'])->name('verification.verify');
-
-Route::get('/forgot-password', function () {return view('password-reset.email'); })->middleware('guest')->name('password.request');
-Route::post('/forgot-password', [PasswordController::class, 'PostResetEmail'])->middleware('guest')->name('password.email');
-Route::get('/forgot-password/confirmation', function () {return view('password-reset.confirmation'); })->middleware('guest')->name('password.confirmation');
-Route::get('/forgot-password/successfull', function () {return view('password-reset.successfull'); })->middleware('guest')->name('password.successfull');
-
-Route::get('/reset-password/{token}', [PasswordController::class, 'showResetForm'])->middleware('guest')->name('password.reset');
-Route::post('/reset-password', [PasswordController::class, 'reset'])->middleware('guest')->name('password.update');
+Route::middleware('locale')->group(function () {
+	Route::middleware(['auth', 'verified'])->group(function () {
+		Route::get('/', [StatisticController::class, 'show'])->name('landing');
+		Route::get('/bycountry', [StatisticController::class, 'index'])->name('bycountry');
+	});
+	Route::middleware('guest')->group(function () {
+		Route::get('login', function () {return view('session.login'); })->name('login.view');
+		Route::get('register', function () {return view('session.register'); })->name('register.view');
+		Route::controller(AuthController::class)->group(function () {
+			Route::post('register', 'store')->name('register');
+			Route::post('logout', 'destroy')->name('logout');
+			Route::post('login', 'login')->name('login');
+		});
+	});
+	Route::middleware('guest')->group(function () {
+		Route::prefix('/email')->group(function () {
+			Route::get('/verify', function () { return view('auth.verify-email'); })->name('verification.notice');
+			Route::get('/verified', function () {return view('auth.verified'); })->name('verification.verified');
+			Route::get('/verify/{id}/{hash}', [VerificationController::class, 'verifyEmail'])->middleware(['signed'])->name('verification.verify');
+		});
+		Route::prefix('/forgot-password')->group(function () {
+			Route::get('/', function () {return view('password-reset.email'); })->name('password.request');
+			Route::post('/', [PasswordController::class, 'PostResetEmail'])->name('password.email');
+			Route::get('/confirmation', function () {return view('password-reset.confirmation'); })->name('password.confirmation');
+			Route::get('/successfull', function () {return view('password-reset.successfull'); })->name('password.successfull');
+		});
+		Route::controller(PasswordController::class)->prefix('/reset-password')->group(function () {
+			Route::get('/{token}', [PasswordController::class, 'showResetForm'])->name('password.reset');
+			Route::post('/', [PasswordController::class, 'reset'])->name('password.update');
+		});
+	});
+});
