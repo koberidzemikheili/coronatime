@@ -17,11 +17,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-	return view('worldwide-content');
-})->middleware(['auth', 'verified'])->name('landing')->middleware('locale');
+Route::get('/', [StatisticController::class, 'show'])->middleware(['auth', 'verified'])->name('landing');
 
-Route::get('/bycountry', [StatisticController::class, 'index'])->name('bycountry')->middleware('locale');
+Route::get('/bycountry', [StatisticController::class, 'index'])->middleware(['auth', 'verified'])->name('bycountry')->middleware('locale');
 
 Route::get('login', function () {
 	return view('session.login');
