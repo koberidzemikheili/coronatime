@@ -26,10 +26,10 @@ Route::middleware('locale')->group(function () {
 		Route::get('register', function () {return view('session.register'); })->name('register.view');
 		Route::controller(AuthController::class)->group(function () {
 			Route::post('register', 'store')->name('register');
-			Route::post('logout', 'destroy')->name('logout');
 			Route::post('login', 'login')->name('login');
 		});
 	});
+	Route::post('logout', [AuthController::class, 'destroy'])->name('logout')->middleware('auth');
 	Route::middleware('guest')->group(function () {
 		Route::prefix('/email')->group(function () {
 			Route::get('/verify', function () { return view('auth.verify-email'); })->name('verification.notice');
