@@ -10,30 +10,39 @@ class StatisticController extends Controller
 {
 	public function show(): View
 	{
-		$sums = Statistic::selectRaw('SUM(confirmed) as confirmed_sum, SUM(deaths) as deaths_sum, SUM(recovered) as recovered_sum')
-		->first();
-
-		return view('worldwide-content', ['sums'=>$sums]);
+		return view('worldwide-content', ['sums'=>$this->sum()]);
 	}
 
 	public function index(Request $request): View
 	{
-		$search = $request->input('search', '');
+		$search = $request->input('search');
 		$sort = $request->input('sort', 'country_name');
 		$direction = $request->input('direction', 'asc');
-		$sums = Statistic::selectRaw('SUM(confirmed) as confirmed_sum, SUM(deaths) as deaths_sum, SUM(recovered) as recovered_sum')
-		->first();
 
 		$statistics = Statistic::query()
-			->join('countries', 'statistics.country_id', '=', 'countries.id')
-			->select('statistics.*', 'countries.name as country_name')
-			->where('countries.name', 'like', '%' . $search . '%')
-			->orderBy('statistics.' . $sort, $direction)
-			->get();
+		->join('countries', 'statistics.country_id', '=', 'countries.id')
+		->select('statistics.*', 'countries.name as country_name')
+		->when($search, function ($query, $search) {
+			return $query->where('countries.name', 'like', '%' . $search . '%');
+		})
+		->orderBy('statistics.' . $sort, $direction)
+		->get();
 
 		return view(
 			'bycountry-content',
-			['statistics' => $statistics, 'search' => $search, 'sort' => $sort, 'direction' => $direction, 'sums'=>$sums]
+			['statistics' => $statistics, 'search' => $search, 'sort' => $sort, 'direction' => $direction, 'sums'=>$this->sum()]
 		);
+	}
+
+	public function sum()
+	{
+		$statistics = Statistic::all();
+		$sums = [
+			'confirmed_sum' => $statistics->sum('confirmed'),
+			'deaths_sum'    => $statistics->sum('deaths'),
+			'recovered_sum' => $statistics->sum('recovered'),
+		];
+
+		return $sums;
 	}
 }

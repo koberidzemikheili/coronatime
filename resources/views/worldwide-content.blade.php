@@ -9,7 +9,7 @@
             <img src="/blue.png" alt="Logo" />
             <div>
               <div class="text-lg font-bold text-gray-900 mb-2">Total Cases</div>
-              <p class="text-2xl font-bold text-blue-600">{{$sums->confirmed_sum}}</p>
+              <p class="text-2xl font-bold text-blue-600">{{$sums['confirmed_sum']}}</p>
             </div>
           </div>
         </div>
@@ -21,7 +21,7 @@
               <img src="/green.png" alt="Logo" />
               <div>
                 <div class="text-lg font-bold text-gray-900 mb-2">Total Deaths</div>
-                <p class="text-2xl font-bold text-green-600">{{$sums->deaths_sum}}</p>
+                <p class="text-2xl font-bold text-green-600">{{$sums['deaths_sum']}}</p>
               </div>
             </div>
           </div>
@@ -31,7 +31,7 @@
             <div class="flex justify-center items-center flex-col lg:px-20 lg:py-10 lg:mt-5 h-full">
               <img src="/yellow.png" alt="Logo" />
               <div class="text-lg font-bold text-gray-900 mb-2">Total Recovered</div>
-              <p class="text-2xl font-bold text-yellow-400">{{$sums->recovered_sum}}</p>
+              <p class="text-2xl font-bold text-yellow-400">{{$sums['recovered_sum']}}</p>
             </div>
           </div>
         </div>
