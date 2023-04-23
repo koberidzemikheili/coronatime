@@ -30,7 +30,11 @@
   <div class="container mx-auto my-8 px-4 md:px-0">
     <h1 class="text-4xl font-bold text-left mb-4">{{ $title }}</h1>
     <div class="flex items-center mb-4 font-bold py-2 px-4 rounded-full mr-2">
-      <a href="{{route('landing')}}" class="font-bold py-2 px-4 rounded-full mr-2 opacity-50 {{ $worldwideClass }}">Worldwide</a>
-      <a href="{{route('bycountry')}}" class="font-bold py-2 px-4 rounded-full opacity-50 {{ $bycountryClass }}">By Country</a>
+      <a href="{{route('landing')}}" class="font-bold py-2 px-4 rounded-full mr-2 opacity-100 {{ $worldwideClass }} relative">Worldwide
+        <span class="absolute bottom-0 left-0 w-full h-1 bg-black{{ $worldwidehidden }}"></span>
+      </a>
+      <a href="{{route('bycountry')}}" class="font-bold py-2 px-4 rounded-full opacity-100 {{ $bycountryClass }} relative">By Country
+        <span class="absolute bottom-0 left-0 w-full h-1 bg-black{{ $bycountryhidden }}"></span>
+      </a>
     </div>
 </div>
