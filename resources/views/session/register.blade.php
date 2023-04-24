@@ -32,10 +32,6 @@
                type="password"
                value=""
                placeholder="Repeat password" />
-          <span class="text-red-500 mt-2 text-sm" role="alert">
-            {{ $message }}
-          </span>
-          @enderror
           <div class="flex items-center justify-between">
             <button type="submit" 
             class="w-full bg-green-500 hover:bg-green-700 text-white font-bold px-4 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-green-600 focus:ring-opacity-50">

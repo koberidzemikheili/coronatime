@@ -35,8 +35,7 @@ class FetchCountryData extends Command
 		foreach ($data as $item) {
 			$country = new Country;
 			$country->code = $item['code'];
-			$country->setTranslation('name', 'en', $item['name']['en']);
-			$country->setTranslation('name', 'ka', $item['name']['ka']);
+			$country->name = json_encode($item['name']);
 			$country->save();
 			$bar->advance();
 		}

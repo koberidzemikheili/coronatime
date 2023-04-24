@@ -29,17 +29,19 @@ class FetchStatisticsData extends Command
 			$response = Http::post('https://devtest.ge/get-country-statistics', ['code' => $code]);
 			$data = $response->json();
 			$country = Country::where('code', $data['code'])->first();
+			$decodedName = json_decode($country->name, true);
 
 			$statistics = new Statistic;
 			$statistics->country_code = $data['code'];
-			$statistics->country_name = $data['country'];
+			$statistics->setTranslation('country_name', 'en', $decodedName['en']);
+			$statistics->setTranslation('country_name', 'ka', $decodedName['ka']);
 			$statistics->confirmed = $data['confirmed'];
 			$statistics->recovered = $data['recovered'];
 			$statistics->deaths = $data['deaths'];
 			$statistics->critical = $data['critical'];
 			$statistics->created_at = $data['created_at'];
 			$statistics->updated_at = $data['updated_at'];
-			$country->statistic()->save($statistics);
+			$statistics->save();
 			$bar->advance();
 		}
 
