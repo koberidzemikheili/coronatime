@@ -16,7 +16,7 @@ class ResetRequest extends FormRequest
 		return [
 			'token'    => 'required',
 			'email'    => 'required|email',
-			'password' => 'required|min:8|confirmed',
+			'password' => 'required|min:3|confirmed',
 		];
 	}
 }
