@@ -6,26 +6,17 @@
           @csrf
           <input type="hidden" name="token" value="{{ $token }}">
           <input type="hidden" name="email" value="{{ $email }}"/>
-          <div class="mb-4">
-            <label for="password" class="block text-gray-700 font-medium mb-2">{{ trans('titles.newpassword') }}</label>
-            <input id="password" type="password" name="password"  placeholder="Fill in password"
-            class="w-full px-4 py-2 border border-gray-400 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent">
-            @error('password')
-              <span class="text-red-500 mt-2 text-sm" role="alert">
-                {{ $message }}
-              </span>
-            @enderror
-          </div>
-          <div class="mb-4">
-            <label for="password_confirmation" class="block text-gray-700 font-medium mb-2">{{ trans('titles.repeatpassword') }}</label>
-            <input id="password_confirmation" type="password" name="password_confirmation" placeholder="Repeat password"
-              class="w-full px-4 py-2 border border-gray-400 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent">
-          </div>
-          @error('password_confirmation')
-          <span class="text-red-500 mt-2 text-sm" role="alert">
-            {{ $message }}
-          </span>
-          @enderror
+          <x-inputfield label="{{ trans('titles.newpassword') }}"
+               name="password"
+               type="password"
+               value="{{ old('password') }}"
+               placeholder="Fill in password" />
+          
+          <x-inputfield label="{{ trans('titles.passwordrepeat') }}"
+               name="password_confirmation"
+               type="password"
+               value=""
+               placeholder="Repeat password" />
             <button type="submit" 
             class="w-full bg-green-500 hover:bg-green-700 text-white font-bold px-4 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-green-600 focus:ring-opacity-50 mt-5">
             {{ trans('titles.savechanges') }}
