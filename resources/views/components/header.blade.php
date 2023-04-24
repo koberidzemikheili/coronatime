@@ -8,7 +8,7 @@
         <span class="font-bold">{{auth()->user()->username}}</span>
         <form id="logout-form" method="POST" action="{{ route('logout') }}" class="block px-4 py-2 text-sm ">
           @csrf
-          <button type="submit" class="text-l font-bold">Log Out</button>
+          <button type="submit" class="text-l font-bold">{{ trans('titles.logout') }}</button>
       </form>   
       </div>
 
@@ -21,7 +21,7 @@
              <div class="block px-4 py-2 text-sm">{{auth()->user()->username}}</div>
              <form id="logout-form" method="POST" action="{{ route('logout') }}" class="block px-4 py-2 text-sm ">
               @csrf
-              <button type="submit" class="text-l font-bold">Log Out</button>
+              <button type="submit" class="text-l font-bold">{{ trans('titles.logout') }}</button>
           </form>   
              
      </div>
@@ -30,10 +30,10 @@
   <div class="container mx-auto my-8 px-4 md:px-0">
     <h1 class="text-4xl font-bold text-left mb-4">{{ $title }}</h1>
     <div class="flex items-center mb-4 font-bold py-2 px-4 rounded-full mr-2">
-      <a href="{{route('landing')}}" class="font-bold py-2 px-4 rounded-full mr-2 opacity-100 {{ $worldwideClass }} relative">Worldwide
+      <a href="{{route('landing')}}" class="font-bold py-2 px-4 rounded-full mr-2 opacity-100 {{ $worldwideClass }} relative">{{ trans('titles.worldwidetitle') }}
         <span class="absolute bottom-0 left-0 w-full h-1 bg-black{{ $worldwidehidden }}"></span>
       </a>
-      <a href="{{route('bycountry')}}" class="font-bold py-2 px-4 rounded-full opacity-100 {{ $bycountryClass }} relative">By Country
+      <a href="{{route('bycountry')}}" class="font-bold py-2 px-4 rounded-full opacity-100 {{ $bycountryClass }} relative">{{ trans('titles.bycountry') }}
         <span class="absolute bottom-0 left-0 w-full h-1 bg-black{{ $bycountryhidden }}"></span>
       </a>
     </div>

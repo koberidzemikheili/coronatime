@@ -1,5 +1,5 @@
 <x-layout>
-    <x-header :title="'Bycountry Statistics'" :bycountryClass="''" :worldwideClass="'opacity-50'" 
+    <x-header :title="trans('titles.bycountrystatistics')" :bycountryClass="''" :worldwideClass="'opacity-50'" 
     :Bycountryhidden="''" :worldwidehidden="'hidden'" ></x-header>
     <div class="overflow-x-auto flex flex-col lg:mx-20 max-h-680">
       <form method="get" action="{{ route('bycountry',['search' => $search, 'sort' => $sort]) }}" class="mb-4">
@@ -15,28 +15,28 @@
             <thead class="bg-gray-100 text-left">
               <th class="px-4 py-2">
                 <a href="{{ route('bycountry', ['search' => $search,'sort' => 'country_name', 'direction' => $direction == 'asc' ? 'desc' : 'asc', 'search' => $search]) }}">
-                    Location
+                    {{ trans('titles.location') }}
                     <img src="{{ $direction == 'asc' ? '/arrowup.png' : '/arrowdown.png' }}" 
                     class="inline-block ml-2 {{ $sort != 'country_name' ? 'hidden' : ''}}" />
                 </a>
             </th>
                 <th class="px-4 py-2">
                     <a href="{{ route('bycountry', ['search' => $search,'sort' => 'confirmed', 'direction' => $direction == 'asc' ? 'desc' : 'asc']) }}">
-                        Confirmed
+                        {{ trans('titles.confirmed') }}
                         <img src="{{ $direction == 'asc' ? '/arrowup.png' : '/arrowdown.png' }}" 
                         class="inline-block ml-2 {{ $sort != 'confirmed' ? 'hidden' : ''}}" />
                     </a>
                 </th>
                 <th class="px-4 py-2">
                     <a href="{{ route('bycountry', ['search' => $search,'sort' => 'deaths', 'direction' => $direction == 'asc' ? 'desc' : 'asc']) }}">
-                        Deaths
+                        {{ trans('titles.deaths') }}
                         <img src="{{ $direction == 'asc' ? '/arrowup.png' : '/arrowdown.png' }}" 
                         class="inline-block ml-2 {{ $sort != 'deaths' ? 'hidden' : ''}}" />
                     </a>
                 </th>
                 <th class="px-4 py-2">
                     <a href="{{ route('bycountry', ['search' => $search,'sort' => 'recovered', 'direction' => $direction == 'asc' ? 'desc' : 'asc']) }}">
-                        Recovered
+                        {{ trans('titles.recovered') }}
                         <img src="{{ $direction == 'asc' ? '/arrowup.png' : '/arrowdown.png' }}" 
                         class="inline-block ml-2 {{ $sort != 'recovered' ? 'hidden' : ''}}" />
                     </a>
@@ -46,7 +46,7 @@
             </thead>
             <tbody class="border-t border-gray-200">
               <tr>
-                  <td class="px-4 py-2">Worldwide</td>
+                  <td class="px-4 py-2">{{ trans('titles.worldwide') }}</td>
                   <td class="px-4 py-2">{{$sums['confirmed_sum']}}</td>
                   <td class="px-4 py-2">{{$sums['deaths_sum']}}</td>
                   <td class="px-4 py-2">{{$sums['recovered_sum']}}</td>

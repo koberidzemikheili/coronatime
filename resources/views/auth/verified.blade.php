@@ -3,10 +3,10 @@
     <x-home-logo class="mt-5 mb-5"></x-home-logo>
     <div class="flex items-center flex-col  mt-32">
         <img src="/success.gif" class="animate-play-once">
-        <div class="text-xl text-left mb-12 mt-3">Your account is verified, you can sign in</div>
+        <div class="text-xl text-left mb-12 mt-3">{{ trans('titles.verifieducansignin') }}</div>
         <a href="{{ route('login') }}"
         class="w-full bg-green-500 hover:bg-green-700 text-white font-bold px-4 py-2 rounded-md flex justify-center"
-        >SIGN IN</a>
+        >{{ trans('titles.login') }}</a>
           </div>
         </div>
     </div>
