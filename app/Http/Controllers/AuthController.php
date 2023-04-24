@@ -12,14 +12,16 @@ class AuthController extends Controller
 {
 	public function login(LoginRequest $request): RedirectResponse
 	{
-		if (auth()->attempt($request->validated(), $request->has('remember'))) {
-			session()->regenerate();
+		$credentials = $request->only(['login', 'password']);
+		$field = filter_var($credentials['login'], FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
 
+		if (auth()->attempt([$field => $credentials['login'], 'password' => $credentials['password']], $request->has('remember'))) {
+			session()->regenerate();
 			return redirect()->route('landing')->with('success', 'Welcome Back!');
 		}
 
 		throw ValidationException::withMessages([
-			'email'=> trans('validation.email'),
+			'login' => trans('validation.login'),
 		]);
 	}
 

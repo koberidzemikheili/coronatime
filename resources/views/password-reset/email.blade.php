@@ -6,7 +6,7 @@
           @csrf
           <div class="mb-4">
             <label for="email" class="block text-gray-700 font-medium mb-2">{{ trans('titles.email') }}</label>
-            <input id="email" type="email" name="email" value="{{ old('email') }}" required autocomplete="email" placeholder="Enter your Email"
+            <input id="email" type="email" name="email" value="{{ old('email') }}"  placeholder="Enter your Email"
             class="w-full px-4 py-2 border border-gray-400 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent">
             @error('email')
               <span class="text-red-500 mt-2 text-sm" role="alert">

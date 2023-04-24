@@ -9,7 +9,7 @@
           @csrf
           <div class="mb-4">
             <label for="username" class="block text-gray-700 font-medium mb-2">{{ trans('titles.username') }}</label>
-            <input id="username" type="text" name="username" value="{{ old('username') }}" required autocomplete="username" placeholder="Enter Username"
+            <input id="username" type="text" name="username" value="{{ old('username') }}"  placeholder="Enter Username"
             class="w-full px-4 py-2 border border-gray-400 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent">
             @error('username')
               <span class="text-red-500 mt-2 text-sm" role="alert">
@@ -19,7 +19,7 @@
           </div>
           <div class="mb-4">
             <label for="email" class="block text-gray-700 font-medium mb-2">{{ trans('titles.email') }}</label>
-            <input id="email" type="email" name="email" value="{{ old('email') }}" required autocomplete="email" placeholder="Enter Email"
+            <input id="email" type="email" name="email" value="{{ old('email') }}"  placeholder="Enter Email"
             class="w-full px-4 py-2 border border-gray-400 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent">
             @error('email')
               <span class="text-red-500 mt-2 text-sm" role="alert">
@@ -29,7 +29,7 @@
           </div>
           <div class="mb-4">
             <label for="password" class="block text-gray-700 font-medium mb-2">{{ trans('titles.password') }}</label>
-            <input id="password" type="password" name="password" required autocomplete="current-password" placeholder="Fill in password"
+            <input id="password" type="password" name="password" placeholder="Fill in password"
             class="w-full px-4 py-2 border border-gray-400 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent">
             @error('password')
               <span class="text-red-500 mt-2 text-sm" role="alert">
@@ -39,7 +39,7 @@
           </div>
           <div class="mb-4">
             <label for="password_confirmation" class="block text-gray-700 font-medium mb-2">{{ trans('titles.passwordrepeat') }}</label>
-            <input id="password_confirmation" type="password" name="password_confirmation" required autocomplete="new-password" placeholder="Repeat password"
+            <input id="password_confirmation" type="password" name="password_confirmation" placeholder="Repeat password"
               class="w-full px-4 py-2 border border-gray-400 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent">
           </div>
           @error('password_confirmation')
