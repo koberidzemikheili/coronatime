@@ -7,46 +7,31 @@
         <div class="mb-4 text-gray-700">{{ trans('titles.enterrequiredinfo') }}</div>
         <form method="POST" action="{{route('register')}}" class="w-full lg:w-1/2">
           @csrf
-          <div class="mb-4">
-            <label for="username" class="block text-gray-700 font-medium mb-2">{{ trans('titles.username') }}</label>
-            <input id="username" type="text" name="username" value="{{ old('username') }}"  placeholder="Enter Username"
-            class="w-full px-4 py-2 border border-gray-400 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent">
-            @error('username')
-              <span class="text-red-500 mt-2 text-sm" role="alert">
-                {{ $message }}
-              </span>
-            @enderror
-          </div>
-          <div class="mb-4">
-            <label for="email" class="block text-gray-700 font-medium mb-2">{{ trans('titles.email') }}</label>
-            <input id="email" type="email" name="email" value="{{ old('email') }}"  placeholder="Enter Email"
-            class="w-full px-4 py-2 border border-gray-400 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent">
-            @error('email')
-              <span class="text-red-500 mt-2 text-sm" role="alert">
-                {{ $message }}
-              </span>
-            @enderror
-          </div>
-          <div class="mb-4">
-            <label for="password" class="block text-gray-700 font-medium mb-2">{{ trans('titles.password') }}</label>
-            <input id="password" type="password" name="password" placeholder="Fill in password"
-            class="w-full px-4 py-2 border border-gray-400 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent">
-            @error('password')
-              <span class="text-red-500 mt-2 text-sm" role="alert">
-                {{ $message }}
-              </span>
-            @enderror
-          </div>
-          <div class="mb-4">
-            <label for="password_confirmation" class="block text-gray-700 font-medium mb-2">{{ trans('titles.passwordrepeat') }}</label>
-            <input id="password_confirmation" type="password" name="password_confirmation" placeholder="Repeat password"
-              class="w-full px-4 py-2 border border-gray-400 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent">
-          </div>
-          @error('password_confirmation')
-          <span class="text-red-500 mt-2 text-sm" role="alert">
-            {{ $message }}
-          </span>
-          @enderror
+          <x-inputfield label="{{ trans('titles.username') }}"
+               name="username"
+               type="text"
+               value="{{ old('username') }}"
+               required="true"
+               autocomplete="username"
+               placeholder="Enter Username" />
+
+          <x-inputfield label="{{ trans('titles.email') }}"
+               name="email"
+               type="email"
+               value="{{ old('email') }}"
+               placeholder="Enter Email" />
+                    
+          <x-inputfield label="{{ trans('titles.password') }}"
+               name="password"
+               type="password"
+               value="{{ old('password') }}"
+               placeholder="Fill in password" />
+
+          <x-inputfield label="{{ trans('titles.passwordrepeat') }}"
+               name="password_confirmation"
+               type="password"
+               value=""
+               placeholder="Repeat password" />
           <div class="flex items-center justify-between">
             <button type="submit" 
             class="w-full bg-green-500 hover:bg-green-700 text-white font-bold px-4 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-green-600 focus:ring-opacity-50">

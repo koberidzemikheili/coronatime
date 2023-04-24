@@ -12,9 +12,8 @@ return new class extends Migration {
 	{
 		Schema::create('statistics', function (Blueprint $table) {
 			$table->id();
-			$table->foreignId('country_id')->constrained()->cascadeOnDelete();
 			$table->string('country_code');
-			$table->string('country_name');
+			$table->json('country_name');
 			$table->integer('confirmed');
 			$table->integer('recovered');
 			$table->integer('deaths');

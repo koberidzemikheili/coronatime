@@ -18,14 +18,12 @@ class StatisticController extends Controller
 		$search = $request->input('search');
 		$sort = $request->input('sort', 'country_name');
 		$direction = $request->input('direction', 'asc');
-
+		$locale = session('locale');
 		$statistics = Statistic::query()
-		->join('countries', 'statistics.country_id', '=', 'countries.id')
-		->select('statistics.*', 'countries.name as country_name')
 		->when($search, function ($query, $search) {
-			return $query->where('countries.name', 'like', '%' . $search . '%');
+			return $query->where('country_name', 'like', '%' . $search . '%');
 		})
-		->orderBy('statistics.' . $sort, $direction)
+		->orderByRaw("country_name->'$.$locale' $direction")
 		->get();
 
 		return view(

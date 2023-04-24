@@ -53,7 +53,7 @@
               </tr>
                 @foreach($statistics as $statistic)
                 <tr>
-                    <td class="px-4 py-2">{{ $statistic->country->name}}</td>
+                    <td class="px-4 py-2">{{ $statistic->country_name}}</td>
                     <td class="px-4 py-2">{{ $statistic->confirmed }}</td>
                     <td class="px-4 py-2">{{ $statistic->deaths }}</td>
                     <td class="px-4 py-2">{{ $statistic->recovered }}</td>
