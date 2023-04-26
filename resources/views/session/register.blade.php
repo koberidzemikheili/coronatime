@@ -35,7 +35,7 @@
           <div class="flex items-center justify-between">
             <button type="submit" 
             class="w-full bg-green-500 hover:bg-green-700 text-white font-bold px-4 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-green-600 focus:ring-opacity-50">
-            {{ trans('titles.login') }}
+            {{ trans('titles.register') }}
             </button>
           </div>
           <div class="text-gray-700 mt-5 text-center">
