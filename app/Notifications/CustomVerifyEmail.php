@@ -38,15 +38,4 @@ class CustomVerifyEmail extends VerifyEmail implements ShouldQueue
 			['verificationUrl' => $this->verificationUrl($notifiable)]
 		);
 	}
-
-	/**
-	 * Get the array representation of the notification.
-	 *
-	 * @return array<string, mixed>
-	 */
-	public function toArray(object $notifiable): array
-	{
-		return [
-		];
-	}
 }

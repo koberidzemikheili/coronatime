@@ -17,7 +17,7 @@ class AuthController extends Controller
 
 		if (auth()->attempt([$field => $credentials['login'], 'password' => $credentials['password']], $request->has('remember'))) {
 			session()->regenerate();
-			return redirect()->route('landing')->with('success', 'Welcome Back!');
+			return redirect()->route('landing');
 		}
 
 		throw ValidationException::withMessages([
@@ -29,13 +29,13 @@ class AuthController extends Controller
 	{
 		auth()->logout();
 
-		return redirect()->route('landing')->with('success', 'Goodbye!');
+		return redirect()->route('login.view');
 	}
 
 	public function store(RegisterRequest $request): RedirectResponse
 	{
 		$user = User::create($request->validated());
 		$user->sendEmailVerificationNotification();
-		return redirect()->route('verification.notice')->with('success', 'Your account has been created.');
+		return redirect()->route('verification.notice');
 	}
 }
