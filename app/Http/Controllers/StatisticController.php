@@ -32,7 +32,7 @@ class StatisticController extends Controller
 		);
 	}
 
-	public function sum()
+	public function sum(): array
 	{
 		$statistics = Statistic::all();
 		$sums = [

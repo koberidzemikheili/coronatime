@@ -11,7 +11,7 @@ class LogoutTest extends TestCase
 {
 	use RefreshDatabase;
 
-	public function test_user_can_logout_and_is_redirected_to_landing_page()
+	public function test_user_can_logout_and_is_redirected_to_landing_page(): Void
 	{
 		$user = User::factory()->create();
 		Auth::login($user);
@@ -23,7 +23,7 @@ class LogoutTest extends TestCase
 		$response->assertRedirect(route('login'));
 	}
 
-	public function test_guest_user_is_redirected_to_login_page_when_attempting_to_logout()
+	public function test_guest_user_is_redirected_to_login_page_when_attempting_to_logout(): Void
 	{
 		$response = $this->post(route('logout'));
 

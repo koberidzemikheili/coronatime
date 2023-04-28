@@ -13,13 +13,13 @@ class RegisterTest extends TestCase
 {
 	use RefreshDatabase;
 
-	public function test_register_page_is_accessible()
+	public function test_register_page_is_accessible(): Void
 	{
 		$response = $this->get(route('register.view'));
 		$response->assertSuccessful();
 	}
 
-	public function test_register_should_give_us_errors_if_input_is_not_provided()
+	public function test_register_should_give_us_errors_if_input_is_not_provided(): Void
 	{
 		$response = $this->post(route('register'));
 		$response->assertSessionHasErrors(
@@ -31,7 +31,7 @@ class RegisterTest extends TestCase
 		);
 	}
 
-	public function test_register_should_give_us_email_error_if_we_wont_provide_email_input()
+	public function test_register_should_give_us_email_error_if_we_wont_provide_email_input(): Void
 	{
 		$response = $this->post(route('register'), [
 			'username'                 => 'testusername',
@@ -46,7 +46,7 @@ class RegisterTest extends TestCase
 		$response->assertSessionDoesntHaveErrors(['password', 'username', 'password_confirmation']);
 	}
 
-	public function test_register_should_give_us_username_error_if_we_wont_provide_username_input()
+	public function test_register_should_give_us_username_error_if_we_wont_provide_username_input(): Void
 	{
 		$response = $this->post(route('register'), [
 			'email'                    => 'testmail@gmail.com',
@@ -61,7 +61,7 @@ class RegisterTest extends TestCase
 		$response->assertSessionDoesntHaveErrors(['password', 'email', 'password_confirmation']);
 	}
 
-	public function test_register_should_give_us_password_error_if_we_wont_provide_password_input()
+	public function test_register_should_give_us_password_error_if_we_wont_provide_password_input(): Void
 	{
 		$response = $this->post(route('register'), [
 			'email'                    => 'testmail@gmail.com',
@@ -75,7 +75,7 @@ class RegisterTest extends TestCase
 		$response->assertSessionDoesntHaveErrors(['username', 'email']);
 	}
 
-	public function test_register_should_give_us_email_error_when_email_field_is_not_correct()
+	public function test_register_should_give_us_email_error_when_email_field_is_not_correct(): Void
 	{
 		$response = $this->post(route('register'), [
 			'email'                    => 'emailredberry.ge',
@@ -87,7 +87,7 @@ class RegisterTest extends TestCase
 		);
 	}
 
-	public function test_register_should_give_us_username_error_when_username_field_is_not_correct()
+	public function test_register_should_give_us_username_error_when_username_field_is_not_correct(): Void
 	{
 		$response = $this->post(route('register'), [
 			'username'                    => 'em',
@@ -99,7 +99,7 @@ class RegisterTest extends TestCase
 		);
 	}
 
-	public function test_register_should_give_us_password_error_when_password_and_passwordrepeat_are_not_matched()
+	public function test_register_should_give_us_password_error_when_password_and_passwordrepeat_are_not_matched(): Void
 	{
 		$response = $this->post(route('register'), [
 			'email'                       => 'testmail@gmail.com',
@@ -115,7 +115,7 @@ class RegisterTest extends TestCase
 		$response->assertSessionDoesntHaveErrors(['username', 'email', 'password_confirmation']);
 	}
 
-	public function test_register_should_redirect_to_login_page_after_successful_register()
+	public function test_register_should_redirect_to_login_page_after_successful_register(): Void
 	{
 		$response = $this->post(route('register'), [
 			'email'                       => 'testmail@gmail.com',
@@ -131,7 +131,7 @@ class RegisterTest extends TestCase
 		$response->assertRedirect(route('verification.notice'));
 	}
 
-	public function test_after_registration_verify_email_is_sent()
+	public function test_after_registration_verify_email_is_sent(): Void
 	{
 		User::factory()->create(
 			[
@@ -149,7 +149,7 @@ class RegisterTest extends TestCase
 		);
 	}
 
-	public function test_EmailVerification()
+	public function test_EmailVerification(): Void
 	{
 		$user = User::factory()->create();
 

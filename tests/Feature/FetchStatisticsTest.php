@@ -11,7 +11,7 @@ class FetchStatisticsTest extends TestCase
 {
 	use RefreshDatabase;
 
-	public function testFetchStatistics()
+	public function testFetchStatistics(): Void
 	{
 		Http::fake([
 			'devtest.ge/get-country-statistics' => Http::response([

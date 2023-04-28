@@ -10,7 +10,7 @@ class CountryFetchTest extends TestCase
 {
 	use RefreshDatabase;
 
-	public function test_handle_method_fetches_data_from_api_and_stores_in_database()
+	public function test_handle_method_fetches_data_from_api_and_stores_in_database(): Void
 	{
 		Http::fake([
 			'https://devtest.ge/countries' => Http::response([
