@@ -14,8 +14,10 @@ class AuthController extends Controller
 	{
 		$credentials = $request->only(['login', 'password']);
 		$field = filter_var($credentials['login'], FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
+		$credentials[$field] = $credentials['login'];
+		unset($credentials['login']);
 
-		if (auth()->attempt([$field => $credentials['login'], 'password' => $credentials['password']], $request->has('remember'))) {
+		if (auth()->attempt($credentials, $request->has('remember'))) {
 			session()->regenerate();
 			return redirect()->route('landing');
 		}
