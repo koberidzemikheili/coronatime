@@ -15,13 +15,13 @@ class PasswordResetTest extends TestCase
 {
 	use RefreshDatabase;
 
-	public function test_resetpassword_page_is_accessible()
+	public function test_resetpassword_page_is_accessible(): Void
 	{
 		$response = $this->get(route('password.request'));
 		$response->assertSuccessful();
 	}
 
-	public function test_resetpassword_page_should_give_us_errors_if_input_is_not_provided()
+	public function test_resetpassword_page_should_give_us_errors_if_input_is_not_provided(): Void
 	{
 		$response = $this->post(route('password.email'));
 		$response->assertSessionHasErrors(
@@ -31,7 +31,7 @@ class PasswordResetTest extends TestCase
 		);
 	}
 
-	public function test_resetpassword_page_should_give_us_errors_if_input_is_wrong()
+	public function test_resetpassword_page_should_give_us_errors_if_input_is_wrong(): Void
 	{
 		$response = $this->post(route('password.email'), ['email'=>'test']);
 		$response->assertSessionHasErrors(
@@ -41,7 +41,7 @@ class PasswordResetTest extends TestCase
 		);
 	}
 
-	public function test_resetpassword_page_should_give_us_errors_if_input_does_not_match_records()
+	public function test_resetpassword_page_should_give_us_errors_if_input_does_not_match_records(): Void
 	{
 		$response = $this->post(route('password.email'), ['email'=>'test@gmail.com']);
 		$response->assertSessionHasErrors(
@@ -51,7 +51,7 @@ class PasswordResetTest extends TestCase
 		);
 	}
 
-	public function test_send_email_post_is_working()
+	public function test_send_email_post_is_working(): Void
 	{
 		User::factory()->create(
 			[
@@ -63,7 +63,7 @@ class PasswordResetTest extends TestCase
 		$response->assertRedirect(route('password.confirmation'));
 	}
 
-	public function test_email_is_sent()
+	public function test_email_is_sent(): Void
 	{
 		User::factory()->create(
 			[
@@ -80,7 +80,7 @@ class PasswordResetTest extends TestCase
 		);
 	}
 
-	public function test_show_reset_form()
+	public function test_show_reset_form(): Void
 	{
 		User::factory()->create(
 			[
@@ -102,7 +102,7 @@ class PasswordResetTest extends TestCase
 		$response->assertSee(['token' => $token, 'email' => 'tester@email.com']);
 	}
 
-	public function test_reset_password()
+	public function test_reset_password(): Void
 	{
 		User::factory()->create(
 			[

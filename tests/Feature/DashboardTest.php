@@ -20,19 +20,19 @@ class DashboardTest extends TestCase
 		$this->user = User::factory()->create();
 	}
 
-	public function test_redirect_to_login_page_if_not_authorized_on_visiting_landing_page()
+	public function test_redirect_to_login_page_if_not_authorized_on_visiting_landing_page(): Void
 	{
 		$response = $this->get(route('landing'));
 		$response->assertRedirect(route('login.view'));
 	}
 
-	public function test_redirect_to_login_page_if_not_authorized_on_visiting_bycountry_page()
+	public function test_redirect_to_login_page_if_not_authorized_on_visiting_bycountry_page(): Void
 	{
 		$response = $this->get(route('bycountry'));
 		$response->assertRedirect(route('login.view'));
 	}
 
-	public function test_landing_is_reachable_for_auth_users()
+	public function test_landing_is_reachable_for_auth_users(): Void
 	{
 		$response = $this->actingAs($this->user)->get(route('landing'));
 		$response->assertSuccessful();
@@ -52,7 +52,7 @@ class DashboardTest extends TestCase
 		]);
 	}
 
-	public function test_bycountry_is_reachable_for_auth_users()
+	public function test_bycountry_is_reachable_for_auth_users(): Void
 	{
 		$response = $this->actingAs($this->user)->get(route('bycountry'));
 		$response->assertSuccessful();
@@ -77,7 +77,7 @@ class DashboardTest extends TestCase
 		$response->assertViewHas('statistics');
 	}
 
-	public function testSum()
+	public function testSum(): Void
 	{
 		Statistic::factory()->count(3)->create([
 			'confirmed' => 10,
@@ -92,7 +92,7 @@ class DashboardTest extends TestCase
 		$this->assertEquals(18, $result['recovered_sum']);
 	}
 
-	public function testSearch()
+	public function testSearch(): Void
 	{
 		Statistic::factory()->create([
 			'country_name' => 'Georgia',

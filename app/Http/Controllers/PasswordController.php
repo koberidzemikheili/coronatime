@@ -7,6 +7,7 @@ use App\Http\Requests\PasswordRequest\ResetRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Auth\Events\PasswordReset;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Password;
@@ -26,7 +27,7 @@ class PasswordController extends Controller
 					: back()->withErrors(['email' => __($status)]);
 	}
 
-	public function showResetForm(Request $request, $token = null)
+	public function showResetForm(Request $request, $token = null): View
 	{
 		return view('password-reset.newpassword')->with(
 			['token' => $token, 'email' => $request->email]

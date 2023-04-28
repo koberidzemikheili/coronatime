@@ -10,13 +10,13 @@ class AuthTest extends TestCase
 {
 	use RefreshDatabase;
 
-	public function test_login_page_is_accessible()
+	public function test_login_page_is_accessible(): Void
 	{
 		$response = $this->get(route('login.view'));
 		$response->assertSuccessful();
 	}
 
-	public function test_auth_should_give_us_errors_if_input_is_not_provided()
+	public function test_auth_should_give_us_errors_if_input_is_not_provided(): Void
 	{
 		$response = $this->post(route('login'));
 		$response->assertSessionHasErrors(
@@ -27,7 +27,7 @@ class AuthTest extends TestCase
 		);
 	}
 
-	public function test_auth_should_give_us_email_or_username_error_if_we_wont_provide_email_or_username_input()
+	public function test_auth_should_give_us_email_or_username_error_if_we_wont_provide_email_or_username_input(): Void
 	{
 		$response = $this->post(route('login'), [
 			'password' => 'my-so-secret-password',
@@ -40,7 +40,7 @@ class AuthTest extends TestCase
 		$response->assertSessionDoesntHaveErrors(['password']);
 	}
 
-	public function test_auth_should_give_us_password_error_if_we_wont_provide_password_input()
+	public function test_auth_should_give_us_password_error_if_we_wont_provide_password_input(): Void
 	{
 		$response = $this->post(route('login'), [
 			'login' => 'testname',
@@ -53,7 +53,7 @@ class AuthTest extends TestCase
 		$response->assertSessionDoesntHaveErrors(['login']);
 	}
 
-	public function test_auth_should_give_us_email_or_username_error_when_email_or_username_field_is_not_correct()
+	public function test_auth_should_give_us_email_or_username_error_when_email_or_username_field_is_not_correct(): Void
 	{
 		$response = $this->post(route('login'), [
 			'login' => 'my',
@@ -65,7 +65,7 @@ class AuthTest extends TestCase
 		);
 	}
 
-	public function test_auth_should_give_us_incorrect_credentials_error_when_such_user_does_not_exists()
+	public function test_auth_should_give_us_incorrect_credentials_error_when_such_user_does_not_exists(): Void
 	{
 		$response = $this->post(route('login'), [
 			'login'    => 'testerror@gmail.com',
@@ -78,7 +78,7 @@ class AuthTest extends TestCase
 		);
 	}
 
-	public function test_auth_should_redirect_to_landing_page_after_successful_login()
+	public function test_auth_should_redirect_to_landing_page_after_successful_login(): Void
 	{
 		$email = 'tester@gmail.com';
 		$password = 'password';
