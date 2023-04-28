@@ -15,9 +15,9 @@ class StatisticController extends Controller
 
 	public function index(Request $request): View
 	{
-		$search = $request->input('search');
-		$sort = $request->input('sort', 'country_name');
-		$direction = $request->input('direction', 'asc');
+		$search = $request->search;
+		$sort = $request->sort ?? $request->country_name;
+		$direction = $request->direction ?? $request->asc;
 		$locale = session('locale') ?? 'en';
 		$statistics = Statistic::query()
 		->when($search, function ($query, $search) {
