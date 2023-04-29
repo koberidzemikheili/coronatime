@@ -21,9 +21,16 @@ class StatisticController extends Controller
 		$locale = session('locale') ?? 'en';
 		$statistics = Statistic::query()
 		->when($search, function ($query, $search) {
-			return $query->where('country_name', 'like', '%' . $search . '%');
+			return $query->orWhere('country_name->ka', 'like', '%' . $search . '%')
+						 ->orWhere('country_name->en', 'like', '%' . $search . '%');
 		})
-		->orderByRaw("json_extract(country_name, '$." . $locale . "') " . $direction)
+		->when($sort, function ($query, $sort) use ($direction, $locale) {
+			if ($sort == 'country_name') {
+				return $query->orderByRaw("json_extract(country_name, '$." . $locale . "') " . $direction);
+			} else {
+				return $query->orderBy($sort, $direction);
+			}
+		})
 		->get();
 
 		return view(
